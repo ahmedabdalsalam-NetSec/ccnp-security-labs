@@ -1,0 +1,38 @@
+Uplink Fast:
+
+- Enabled by default in RSTP.
+
+- Should be configured in access switches.
+
+- After configuring uplink fast, the priority is increased with 49152 and the cost with 3000.
+
+- If the root port is down, the block becomes the root port in no time.
+
+- If the root port is up again after failure, it becomes the root again after 30 sec + skew time which is 5 sec. 
+
+
+
+Objectives: 
+
+- Configure uplink fast on IOU3 switch to converge faster from direct change.
+
+- Update the maximum update rate to 100 PPS. 
+
+
+
+Configuration: 
+
+IOU3(config)#spanning-tree uplinkfast 
+IOU3#debug spanning-tree events 
+IOU3(config)#int e0/0 
+IOU3(config-if)#shutdown 
+IOU3#show spanning-tree uplinkfast 
+IOU3#show spanning-tree  
+IOU3#show spanning-tree detail 
+IOU3(config)#int e0/0 
+IOU3(config-if)#no shutdown 
+IOU3#show spanning-tree summary 
+IOU3(config)#spanning-tree uplinkfast max-update-rate 100
+
+
+
